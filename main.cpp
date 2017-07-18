@@ -90,6 +90,7 @@ void PrintFilledRectangle()
     {
         for (int row = 0; row < heightInput; row++)
         {
+            // loop through columns and print filler
             for (int column = 0; column < widthInput; column++)
             {
                 std::cout << "*";
@@ -147,6 +148,10 @@ void PrintNonFilledRectangle()
 
 void PrintFilledTriangle()
 {
+    int columnLength = heightInput * 9 / 5;
+    int spaceLength = (columnLength - 1) / 2;
+    int fillLength = columnLength - (spaceLength * 2);
+
     if (heightInput == 0)
     {
         std::cout << "The triangle height has to be at least 1\n";
@@ -155,17 +160,29 @@ void PrintFilledTriangle()
     else
     {
         for (int row = 0; row < heightInput; row++)
-        {
-            for (int column = 0; column < heightInput; column++)
+        {     
+            // print leading spaces
+            for (int i = 0; i < spaceLength; i++)
             {
                 std::cout << " ";
             }
-            
-            for (int column = 0; column < row + 1; column++)
+
+            // print filler stars
+            for (int j = 0; j < fillLength; j++)
             {
                 std::cout << "*";
             }
+
+            // print trailing spaces
+            for (int k = 0; k < spaceLength; k++)
+            {
+                std::cout << " ";
+            }
             std::cout << std::endl;
+
+            // modify space and fill lengths for next row
+            spaceLength--;
+            fillLength += 2;
         }
         std::cout << std::endl;
     }
@@ -173,6 +190,9 @@ void PrintFilledTriangle()
 
 void PrintNonFilledTriangle() // TODO replace code with nonfill code
 {
+    int columnLength = heightInput * 9 / 5;
+    int spaceLength = (columnLength - 1) / 2;
+    
     if (heightInput == 0)
     {
         std::cout << "The triangle height has to be at least 1\n";
@@ -182,16 +202,46 @@ void PrintNonFilledTriangle() // TODO replace code with nonfill code
     {
         for (int row = 0; row < heightInput; row++)
         {
-            for (int column = 0; column < heightInput; column++)
+            // Calculate center space for each new row
+            int centerSpace = columnLength - ((spaceLength * 2) + 2);
+
+            // print leading spaces
+            for (int i = 0; i < spaceLength; i++)
             {
                 std::cout << " ";
             }
 
-            for (int column = 0; column < row + 1; column++)
+            // print start fill
+            std::cout << "*";
+
+            for (int j = 0; j < centerSpace; j++)
+            {
+                if (row == heightInput - 1)
+                {
+                    // if we're on final row fill in all spaces
+                    std::cout << "*"; 
+                }
+                else
+                {
+                    // if we're not on final row leave spaces
+                    std::cout << " ";
+                }               
+            }
+            
+            // print end fill
+            if (!(row == 0))
             {
                 std::cout << "*";
             }
+            
+            // print trailing spaces
+            for (int k = 0; k < spaceLength; k++)
+            {
+                std::cout << " ";
+            }
             std::cout << std::endl;
+
+            spaceLength--;
         }
         std::cout << std::endl;
     }
