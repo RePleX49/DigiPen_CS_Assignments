@@ -17,8 +17,10 @@ int main(void)
 
     do {
         PrintOptions();
-        std::cout << "Your choice is : ";
+        std::cout << "Your choice is: ";
         std::cin >> userOption;
+        std::cout << std::endl;
+
         switch (userOption)
         {
         case 1:
@@ -26,6 +28,7 @@ int main(void)
             std::cout << "Enter the rectangle's width and height values: ";
             std::cin >> widthInput;
             std::cin >> heightInput;
+            std::cout << std::endl;
             PrintFilledRectangle();
             break;
             
@@ -34,20 +37,23 @@ int main(void)
             std::cout << "Enter the rectangle's width and height values: ";
             std::cin >> widthInput;
             std::cin >> heightInput;
+            std::cout << std::endl;
             PrintNonFilledRectangle();
             break;
             
         case 3:
             isDrawing = true;
-            std::cout << "Enter the triangle height value: ";
+            std::cout << "Enter the triangle's height value: ";
             std::cin >> heightInput;
+            std::cout << std::endl;
             PrintFilledTriangle();
             break;
 
         case 4:
             isDrawing = true;
-            std::cout << "Enter the triangle height value: ";
+            std::cout << "Enter the triangle's height value: ";
             std::cin >> heightInput;
+            std::cout << std::endl;
             PrintNonFilledTriangle();
             break;
 
@@ -58,7 +64,6 @@ int main(void)
     while(isDrawing);
 
     std::cout << "Thank you for using our application!" << std::endl;
-    system("pause");
     return 0;
 }
 
@@ -76,12 +81,12 @@ void PrintOptions()
 
 void PrintFilledRectangle()
 {
-    if (widthInput == 0)
+    if (widthInput < 1)
     {
         std::cout << "The rectangle width has to be at least 1\n";
         std::cout << std::endl;
     }
-    else if (heightInput == 0)
+    else if (heightInput < 1)
     {
         std::cout << "The rectangle height has to be at least 1\n";
         std::cout << std::endl;
@@ -103,12 +108,12 @@ void PrintFilledRectangle()
 
 void PrintNonFilledRectangle()
 {
-    if (widthInput == 0)
+    if (widthInput < 1)
     {
         std::cout << "The rectangle width has to be at least 1\n";
         std::cout << std::endl;
     }
-    else if (heightInput == 0)
+    else if (heightInput  < 1)
     {
         std::cout << "The rectangle height has to be at least 1\n";
         std::cout << std::endl;
@@ -118,7 +123,7 @@ void PrintNonFilledRectangle()
         for (int row = 0; row < heightInput; row++)
         {
             // print out full line if on top or bottom row
-            if (row == 0 || row == (heightInput - 1))
+            if (row  < 1 || row == (heightInput - 1))
             {
                 for (int column = 0; column < widthInput; column++)
                 {
@@ -130,7 +135,7 @@ void PrintNonFilledRectangle()
                 for (int column = 0; column < widthInput; column++)
                 {
                     // check if we're on left or right border
-                    if (column == 0 || column == (widthInput - 1))
+                    if (column  < 1 || column == (widthInput - 1))
                     {
                         std::cout << "*"; // print if on border
                     }     
@@ -148,13 +153,13 @@ void PrintNonFilledRectangle()
 
 void PrintFilledTriangle()
 {
-    int columnLength = heightInput * 9 / 5;
+    int columnLength = ((2* heightInput) - 1);
     int spaceLength = (columnLength - 1) / 2;
     int fillLength = columnLength - (spaceLength * 2);
 
-    if (heightInput == 0)
+    if (heightInput  < 1)
     {
-        std::cout << "The triangle height has to be at least 1\n";
+        std::cout << "The triangle's height has to be at least 1\n";
         std::cout << std::endl;
     }
     else
@@ -193,9 +198,9 @@ void PrintNonFilledTriangle() // TODO replace code with nonfill code
     int columnLength = heightInput * 9 / 5;
     int spaceLength = (columnLength - 1) / 2;
     
-    if (heightInput == 0)
+    if (heightInput  < 1)
     {
-        std::cout << "The triangle height has to be at least 1\n";
+        std::cout << "The triangle's height has to be at least 1\n";
         std::cout << std::endl;
     }
     else
@@ -229,7 +234,7 @@ void PrintNonFilledTriangle() // TODO replace code with nonfill code
             }
             
             // print end fill
-            if (!(row == 0))
+            if (!(row  < 1))
             {
                 std::cout << "*";
             }
